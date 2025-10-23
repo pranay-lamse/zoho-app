@@ -1,3 +1,8 @@
 {
-    "error": "invalid_client"
+    "access_token": "1000.fb0f7f71611cb8c4bd5139fafc036605.80ae9dc7c58b7240142a6904fcd1619e",
+    "refresh_token": "1000.2db826a0b775e51ecfd014d47fe54e22.f19720868bfd8197eb1c3bd6853443fe",
+    "scope": "aaaserver.profile.READ ZohoCRM.modules.ALL ZohoCRM.settings.ALL",
+    "api_domain": "https:\/\/www.zohoapis.in",
+    "token_type": "Bearer",
+    "expires_in": 3600
 }
