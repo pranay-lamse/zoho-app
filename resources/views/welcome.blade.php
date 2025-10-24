@@ -198,18 +198,7 @@
     <div class="wrap">
 
         {{-- top-right nav if routes exist --}}
-        <div class="top-right" aria-hidden="true">
-            @if (Route::has('login'))
-                @auth
-                    <a class="link-pill" href="{{ url('/dashboard') }}">Dashboard</a>
-                @else
-                    <a class="link-pill" href="{{ route('login') }}">Sign in</a>
-                    @if (Route::has('register'))
-                        <a class="link-pill" href="{{ route('register') }}">Register</a>
-                    @endif
-                @endauth
-            @endif
-        </div>
+
 
         <main class="card" role="main" aria-labelledby="page-title">
             {{-- logo --}}
@@ -220,39 +209,6 @@
             <p class="lead">
                 Securely connect your Zoho One account to manage CRM, events, and more — all from one place.
             </p>
-
-            {{-- Buttons block --}}
-            <div style="display:grid; gap:12px;">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="btn" role="button" aria-label="Go to Dashboard">
-                        <span style="display:inline-block;">Go to Dashboard</span>
-                    </a>
-                @else
-                    {{-- Primary login: points to named route 'login' (your /zoho/auth route should be named login) --}}
-                    <button id="zohoLoginBtn" class="btn" type="button" aria-label="Login with Zoho"
-                        onclick="startLogin(this)">
-                        <span id="btnLabel">Continue with Zoho</span>
-                        <span id="btnSpinner" style="display:none;"><span class="spinner" aria-hidden="true"></span></span>
-                    </button>
-
-                    {{-- Optional secondary: local fallback login/register --}}
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn secondary" role="button" aria-label="Register">
-                            Create account
-                        </a>
-                    @endif
-                @endauth
-            </div>
-
-            <div class="meta" aria-hidden="false">
-                <span class="small">Need help?</span>
-                <a href="mailto:support@example.com" class="small">Support</a>
-                <span>&middot;</span>
-                <a href="#" class="small">Privacy</a>
-                <span>&middot;</span>
-                <a href="#" class="small">Terms</a>
-            </div>
-
             @php
                 $tokenFile = storage_path('zoho_tokens.json');
                 $isConnected = false;
@@ -264,6 +220,57 @@
                     }
                 }
             @endphp
+
+            {{-- Buttons block --}}
+            <div style="display:grid; gap:12px;">
+
+                {{-- ✅ If Zoho token exists --}}
+                @if ($isConnected)
+                    <a href="{{ url('/zoho/events') }}" class="btn" role="button">
+                        📅 List Zoho Events
+                    </a>
+
+                    <a href="{{ url('/zoho/events/create') }}" class="btn" role="button">
+                        ➕ Create Event
+                    </a>
+
+                    <a href="{{ url('/zoho/payments') }}" class="btn" role="button">
+                        💳 Payments
+                    </a>
+
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="btn" role="button">
+                            🚀 Dashboard
+                        </a>
+                    @endauth
+                @else
+                    {{-- ❌ Not connected → show login --}}
+                    <button id="zohoLoginBtn" class="btn" type="button" onclick="startLogin(this)">
+                        <span id="btnLabel">Continue with Zoho 🔐</span>
+                        <span id="btnSpinner" style="display:none;">
+                            <span class="spinner" aria-hidden="true"></span>
+                        </span>
+                    </button>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="btn secondary" role="button">
+                            Create account
+                        </a>
+                    @endif
+                @endif
+
+            </div>
+
+            <div class="meta" aria-hidden="false">
+                <span class="small">Need help?</span>
+                <a href="mailto:support@example.com" class="small">Support</a>
+                <span>&middot;</span>
+                <a href="#" class="small">Privacy</a>
+                <span>&middot;</span>
+                <a href="#" class="small">Terms</a>
+            </div>
+
+
 
             <div style="margin-top:14px; text-align:center;">
                 <div class="small">Token status:
