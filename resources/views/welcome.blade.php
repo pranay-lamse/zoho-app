@@ -190,6 +190,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body>
@@ -301,6 +303,24 @@
             }, 350);
         }
     </script>
+
+
+
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                toastr.success("{{ session('success') }}");
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                toastr.error("{{ session('error') }}");
+            });
+        </script>
+    @endif
 </body>
 
 </html>

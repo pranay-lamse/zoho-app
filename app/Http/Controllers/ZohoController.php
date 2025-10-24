@@ -39,7 +39,8 @@ class ZohoController extends Controller
 
         file_put_contents(storage_path('zoho_tokens.json'), json_encode($data, JSON_PRETTY_PRINT));
 
-        return "Zoho tokens saved successfully!";
+        return redirect('/')
+    ->with('success', 'Zoho connected successfully!');
     }
 
     // Refresh access token
