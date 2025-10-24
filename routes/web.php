@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/zoho/auth', [ZohoController::class, 'redirectToZoho']);
+Route::get('/zoho/auth', [ZohoController::class, 'redirectToZoho'])->name('login');
 Route::get('/zoho/callback', [ZohoController::class, 'handleCallback']);
 
 Route::get('/events', [EventController::class, 'listEvents']);
