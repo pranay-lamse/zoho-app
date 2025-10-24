@@ -251,12 +251,24 @@
                 <a href="#" class="small">Terms</a>
             </div>
 
+            @php
+                $tokenFile = storage_path('zoho_tokens.json');
+                $isConnected = false;
+
+                if (file_exists($tokenFile)) {
+                    $tokenData = json_decode(file_get_contents($tokenFile), true);
+                    if (isset($tokenData['access_token']) && !empty($tokenData['access_token'])) {
+                        $isConnected = true;
+                    }
+                }
+            @endphp
+
             <div style="margin-top:14px; text-align:center;">
                 <div class="small">Token status:
-                    @if (auth()->check())
-                        <strong style="color:#a6f0c3">Connected</strong>
+                    @if ($isConnected)
+                        <strong style="color:#28d37a;">Connected ✅</strong>
                     @else
-                        <strong style="color:#f6b1b1">Not connected</strong>
+                        <strong style="color:#ff6b6b;">Not Connected ❌</strong>
                     @endif
                 </div>
             </div>
