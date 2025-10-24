@@ -226,15 +226,15 @@
 
                 {{-- ✅ If Zoho token exists --}}
                 @if ($isConnected)
-                    <a href="{{ url('/zoho/events') }}" class="btn" role="button">
+                    <a href="{{ url('/events') }}" class="btn" role="button">
                         📅 List Zoho Events
                     </a>
 
-                    <a href="{{ url('/zoho/events/create') }}" class="btn" role="button">
+                    <a href="{{ url('/events/create') }}" class="btn" role="button">
                         ➕ Create Event
                     </a>
 
-                    <a href="{{ url('/zoho/payments') }}" class="btn" role="button">
+                    <a href="{{ url('/pay') }}" class="btn" role="button">
                         💳 Payments
                     </a>
 
