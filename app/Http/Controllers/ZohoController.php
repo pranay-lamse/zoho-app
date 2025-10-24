@@ -43,6 +43,23 @@ class ZohoController extends Controller
     ->with('success', 'Zoho connected successfully!');
     }
 
+    public function logout()
+{
+
+
+    $tokenFile = storage_path('zoho_tokens.json');
+if (file_exists($tokenFile)) {
+    unlink($tokenFile);
+}
+
+    if (file_exists($tokenFile)) {
+        unlink($tokenFile); // Delete token file
+    }
+
+    return redirect('/')
+        ->with('success', 'Zoho disconnected successfully!');
+}
+
     // Refresh access token
     public static function getAccessToken()
     {

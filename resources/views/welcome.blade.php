@@ -196,8 +196,36 @@
 
 <body>
     <div class="wrap">
+        @php
+            $tokenFile = storage_path('zoho_tokens.json');
+            $isConnected = false;
+
+            if (file_exists($tokenFile)) {
+                $tokenData = json_decode(file_get_contents($tokenFile), true);
+                if (isset($tokenData['access_token']) && !empty($tokenData['access_token'])) {
+                    $isConnected = true;
+                }
+            }
+        @endphp
+
 
         {{-- top-right nav if routes exist --}}
+        <div class="top-right" aria-hidden="true">
+            @if ($isConnected)
+                {{-- Logout button if token exists --}}
+                <form action="{{ route('zoho.logout') }}" method="POST" style="display:inline">
+                    @csrf
+                    <button type="submit" class="link-pill">Logout</button>
+                </form>
+            @else
+                @if (Route::has('login'))
+                    <a class="link-pill" href="{{ route('login') }}">Sign in</a>
+                @endif
+                @if (Route::has('register'))
+                    <a class="link-pill" href="{{ route('register') }}">Register</a>
+                @endif
+            @endif
+        </div>
 
 
         <main class="card" role="main" aria-labelledby="page-title">
@@ -209,17 +237,6 @@
             <p class="lead">
                 Securely connect your Zoho One account to manage CRM, events, and more — all from one place.
             </p>
-            @php
-                $tokenFile = storage_path('zoho_tokens.json');
-                $isConnected = false;
-
-                if (file_exists($tokenFile)) {
-                    $tokenData = json_decode(file_get_contents($tokenFile), true);
-                    if (isset($tokenData['access_token']) && !empty($tokenData['access_token'])) {
-                        $isConnected = true;
-                    }
-                }
-            @endphp
 
             {{-- Buttons block --}}
             <div style="display:grid; gap:12px;">

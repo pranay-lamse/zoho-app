@@ -1,8 +1,0 @@
-{
-    "access_token": "1000.5d55253106551567078e53f7642d832f.a6aaf29fcd8a41237e3be8c2549c33fe",
-    "refresh_token": "1000.874d28bd166e942f07574e477055098f.19e4250a82c85385814f2416f361c2d1",
-    "scope": "aaaserver.profile.READ ZohoCRM.modules.ALL ZohoCRM.settings.ALL",
-    "api_domain": "https:\/\/www.zohoapis.in",
-    "token_type": "Bearer",
-    "expires_in": 3600
-}

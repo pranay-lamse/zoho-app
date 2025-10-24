@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 
-
+Route::post('/zoho/logout', [ZohoController::class, 'logout'])->name('zoho.logout');
 Route::get('/zoho/auth', [ZohoController::class, 'redirectToZoho'])->name('login');
 Route::get('/zoho/callback', [ZohoController::class, 'handleCallback']);
 
