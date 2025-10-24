@@ -255,6 +255,11 @@
                         💳 Payments
                     </a>
 
+                    <a href="{{ url('/pay') }}" class="btn" role="button">
+                        💳 Get Tickets
+                    </a>
+
+
                     @auth
                         <a href="{{ url('/dashboard') }}" class="btn" role="button">
                             🚀 Dashboard
@@ -345,6 +350,8 @@
             });
         </script>
     @endif
+
+    <script type="text/javascript" id="zsiqscript" src="https://salesiq.zoho.in/widget"></script>
 </body>
 
 </html>
