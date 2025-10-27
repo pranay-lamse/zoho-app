@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CsvImportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ZohoController;
@@ -20,3 +21,15 @@ Route::get('/pay/{bookingId}', [EventController::class, 'payTicket']);
 
 Route::post('/webhook/zoho', [EventController::class, 'handleZohoWebhook']);
 Route::post('/webhook/razorpay', [EventController::class, 'handleRazorpayWebhook']);
+
+
+Route::get('/csv-upload', function () {
+    return view('csv-upload');
+})->name('csv.upload');
+
+Route::post('/import-csv', [CsvImportController::class, 'import'])->name('import.csv');
+
+Route::get('/sample-csv', function () {
+    $filePath = public_path('sample_import.csv');
+    return response()->download($filePath, 'sample.csv');
+})->name('sample.csv');
