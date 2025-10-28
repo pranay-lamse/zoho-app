@@ -85,6 +85,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Number</th>
                             <th>Email</th>
                             <th>City</th>
                             <th>State</th>
@@ -96,6 +97,7 @@
                         @forelse($users as $user)
                             <tr>
                                 <td>{{ $user->name ?? '-' }}</td>
+                                <td>{{ $user->phone ?? 'Null' }}</td>
                                 <td>{{ $user->email ?? 'Null' }}</td>
                                 <td>{{ $user->city ?? 'Null' }}</td>
                                 <td>{{ $user->state ?? 'Null' }}</td>
