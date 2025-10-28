@@ -4,6 +4,7 @@ use App\Http\Controllers\CsvImportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ZohoController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -16,6 +17,7 @@ Route::get('/zoho/auth', [ZohoController::class, 'redirectToZoho'])->name('login
 Route::get('/zoho/callback', [ZohoController::class, 'handleCallback']);
 
 Route::get('/events', [EventController::class, 'listEvents']);
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/book', [EventController::class, 'bookTicket']);
 Route::get('/pay/{bookingId}', [EventController::class, 'payTicket']);
 

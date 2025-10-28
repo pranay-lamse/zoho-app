@@ -259,6 +259,10 @@
                         💳 Get Tickets
                     </a>
 
+                    <a href="{{ url('/users') }}" class="btn" role="button">
+                        💳 User List
+                    </a>
+
 
                     @auth
                         <a href="{{ url('/dashboard') }}" class="btn" role="button">
